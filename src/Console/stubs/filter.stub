@@ -1,0 +1,35 @@
+<?php
+
+namespace $NAMESPACE$;
+
+//use Illuminate\Database\Eloquent\Builder;
+use Jiaxincui\RequestFilter\BaseFilter;
+
+/**
+ * Class $CLASSNAME$.
+ *
+ * @package $NAMESPACE$
+ */
+class $CLASSNAME$ extends BaseFilter
+{
+    protected function getFieldsQueryable(): array
+    {
+        return [];
+    }
+
+    protected function getReleasable(): array
+    {
+        return [];
+    }
+
+    protected function getSortable(): array
+    {
+        return [];
+    }
+
+//    protected function addBaseScope(Builder $builder): Builder
+//    {
+//        return $builder;
+//    }
+
+}

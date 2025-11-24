@@ -1,0 +1,15 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Jiaxincui\RequestFilter\Filter;
+
+/**
+ * Class $CLASSNAME$.
+ *
+ * @package $NAMESPACE$
+ */
+class $CLASSNAME$ implements Filter
+{
+    // public function apply($builder) {}
+}
