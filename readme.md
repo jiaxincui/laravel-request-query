@@ -76,37 +76,49 @@ public function onlyVip($arg){
     $this->builder->where('vip', '=', $arg)
 }
 ```
-请求 `/api/users?onlyVip=1`
+使用： `/api/users?onlyVip=1`
 
 ## 分组
 对于 `where` 查询需要区分 `and` 和 `or` , 以下示例可以告诉你答案 
+
+**示例1**
 
 `/api/users?where=age:gt:18;name:foo` 
 
 SQL `age > 18 or neme = 'foo'`
 
+**示例2**
+
 `/api/users?where[]=age:gt:18&where[]=name:foo`
 
 SQL `age > 18 and neme = 'foo'`
+
+**示例3**
 
 `/api/users?where[]=age:lte:18;vip:eq:1&where[]=name:foo`
 
 SQL `(age > 18 or vip = 1) and neme = 'foo'`
 
 ## 关联查询
+
 基本
-`/api/users?with=userinfo` 相当于 `User::with('userinfo')->get();`
+
+`/api/users?with=userinfo` 等同于 `User::with('userinfo')->get();`
 
 带条件的关联查询
-`/api/users?with=userinfo&where=userinfo.age:gt:18` 相当于 `User::whereHas('userinfo', fn ($query) => $query->where('age', '>', 18)->get();`
+
+`/api/users?with=userinfo&where=userinfo.age:gt:18` 等同于 `User::whereHas('userinfo', fn ($query) => $query->where('age', '>', 18)->get();`
 
 ## 定义字段
+
 安全起见，过滤器使用字段白名单机制，每个过滤器都需要显式定义可查询的列、可关联的表、可用于排序的列。
 （如果没有定义，过滤器将不起任何作用）
 
 你需要显式实现如下方法：
 
 ```php
+// App\Filters\UserFilter
+
 // 定义可用于条件查询的列名
 protected function getFieldsQueryable(): array {
     return [

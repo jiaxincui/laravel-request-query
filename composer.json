@@ -1,6 +1,6 @@
 {
   "name": "jiaxincui/laravel-request-query",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "eloquent request filter for laravel",
   "type": "library",
   "require": {

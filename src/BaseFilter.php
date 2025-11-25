@@ -14,7 +14,6 @@ abstract class BaseFilter implements Filter
         'applyWhere',
         'parseWhere',
         'whereQuery',
-        'orWhereQuery',
         'getFieldsQueryable',
         'getReleasable',
         'getSortable'
