@@ -14,11 +14,12 @@ Eloquent request filter for laravel
 `/api/users?where[]=age:gt:18&where[]=name:foo&slice=5,10&orderBy=id,desc`
 
 ## 使用步骤
-1. 在 `Model` 里使用 `trait` 类
+
+**1. 在 `Model` 里使用 `trait` 类**
 
 `use Jiaxincui\RequestFilter\FilterScope;`
 
-2. 创建 `Filter` 类
+**2. 创建 `Filter` 类**
 
 `php artisan make:filter User`
 
@@ -26,11 +27,11 @@ Eloquent request filter for laravel
 
 你还需要显式定义可用于过滤的字段，见后续章节。
 
-3. 在查询时添加 `Filter` 类
+**3. 在查询时添加 `Filter` 类**
 
 `User::fitler(new UserFilter)->get()`
 
-4. 查询请求
+**4. 查询请求**
 
 `/api/users?where=age:gt:18;name:foo`
 
@@ -46,14 +47,15 @@ Eloquent request filter for laravel
 `slice` 示例： `slice=5,10`
 
 ### trashed
-`trashed` 示例 `trashed=only`、`trashed=with`
+`trashed` 示例： `trashed=only`、`trashed=with`
 
 ### where
-`where` 和 `where[]`
-示例：`where=age:gt:18`、`where[]=name:like:foo&where[]=age:gt:18`
+
+`where` 和 `where[]` 示例：`where=age:gt:18`、`where[]=name:like:foo&where[]=age:gt:18`
 
 **操作符**
-参数值分3段，并且使用`:` (冒号) 分割，分别是字段、操作符、值
+
+对于 `where` 一个查询参数分3段，并且使用`:` (冒号) 作为分隔符，分别代表字段、操作符、值
 
 支持的操作符如下：
 
@@ -64,6 +66,15 @@ Eloquent request filter for laravel
 其中 `null` `notnull` 参数为2段
 
 示例：`where=card_number:null`
+
+**列表项**
+
+列表项使用 `,` 作为分隔符
+
+以下示例展示了分隔符 `,` 的使用
+
+`api/users?where=name:in:foo,bar&with=userinfo,adress&orderBy=id,desc&slice=5,10`
+
 
 ## 自定义方法
 
@@ -79,7 +90,10 @@ public function onlyVip($arg){
 使用： `/api/users?onlyVip=1`
 
 ## 分组
+
 对于 `where` 查询需要区分 `and` 和 `or` , 以下示例可以告诉你答案 
+
+**请留意 `;` 符号的使用**
 
 **示例1**
 
@@ -136,13 +150,29 @@ protected function getReleasable(): array {
     ]
 }
 
-//定义可用于排序的列
+// 定义可用于排序的列
 protected function getSortable(): array {
     return [
         'id',
         'created_at'
     ]
 }
+```
+
+## 全局过滤
+
+有时候你可能想要使用全局的过滤，你可以重写 `applyBaseFilter` 方法
+
+这个方法应该返回 `Builder` 实例
+
+```php
+// App\Filters\UserFilter
+
+protected function applyBaseFilter(Builder $builder): Builder
+{
+    return $builder->where('disabled', 0);
+}
+
 ```
 
 ## License

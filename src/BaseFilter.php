@@ -49,14 +49,14 @@ abstract class BaseFilter implements Filter
      * @param Builder $builder
      * @return Builder
      */
-    protected function addBaseScope(Builder $builder): Builder
+    protected function applyBaseFilter(Builder $builder): Builder
     {
         return $builder;
     }
 
     public function apply(Builder $builder): Builder
     {
-        $this->builder = $this->addBaseScope($builder);
+        $this->builder = $this->applyBaseFilter($builder);
 
         $query = static::$requestQuery;
 
