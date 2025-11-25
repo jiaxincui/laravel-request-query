@@ -27,7 +27,7 @@ class $CLASSNAME$ extends BaseFilter
         return [];
     }
 
-//    protected function addBaseScope(Builder $builder): Builder
+//    protected function applyBaseFilter(Builder $builder): Builder
 //    {
 //        return $builder;
 //    }
