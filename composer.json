@@ -1,15 +1,15 @@
 {
   "name": "jiaxincui/laravel-request-query",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "eloquent request filter for laravel",
   "type": "library",
   "require": {
     "php": ">=8.1",
-    "illuminate/console": "^12.0",
-    "illuminate/database": "^12.0",
-    "illuminate/filesystem": "^12.0",
-    "illuminate/support": "^12.0",
-    "illuminate/contracts": "^12.0"
+    "illuminate/console": "^12.0|^13.0",
+    "illuminate/database": "^12.0|^13.0",
+    "illuminate/filesystem": "^12.0|^13.0",
+    "illuminate/support": "^12.0|^13.0",
+    "illuminate/contracts": "^12.0|^13.0"
   },
   "license": "MIT",
   "authors": [
